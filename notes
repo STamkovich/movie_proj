@@ -1,0 +1,13 @@
+прога SQLite - https://sqlitebrowser.org/
+Установка django-extensions
+Для просмотра sql запросов при работе с ORM воспользуемся модулем django-extensions
+
+устанавливаем
+pip install django-extensions
+добавляем в наши приложения
+INSTALLED_APPS = (
+    ...
+    'django_extensions',
+)
+пользуемся в терминале командой
+python manage.py shell_plus --print-sql
