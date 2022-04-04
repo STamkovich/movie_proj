@@ -11,3 +11,6 @@ INSTALLED_APPS = (
 )
 пользуемся в терминале командой
 python manage.py shell_plus --print-sql
+
+
+Документация по работе с QuerySet - https://docs.djangoproject.com/en/3.2/ref/models/querysets/
