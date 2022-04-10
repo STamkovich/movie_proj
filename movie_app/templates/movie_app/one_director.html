@@ -1,0 +1,17 @@
+{% extends 'movie_app/base.html' %}
+
+{% block Title %} Информация о Режиссёре -  {{ director.first_name }} {{ director.last_name }} {% endblock %}
+
+{% block content %}
+    <h2> Информация о Режиссёре - {{ director.first_name }} {{ director.last_name }} </h2>
+    <h3> Имя - {{ director.first_name }}</h3>
+    <h3> Фамилия - {{ director.last_name }}</h3>
+    <h3> Email: {{ director.director_email | default:"Неизвестен" }}</h3>
+    <hr>
+    <h3>  Все фильмы снятые - {{ director }} </h3>
+         <ul>
+        {% for movie in director.movie_set.all %}
+            <li> {{ movie.name }} </li>
+            {% endfor %}
+    </ul>
+{% endblock %}
