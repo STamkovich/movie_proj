@@ -13,6 +13,14 @@ class Director(models.Model):
         return f'{self.first_name} {self.last_name}'
 
 
+class DressingRoom(models.Model):
+    floor = models.IntegerField()
+    number = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.floor} {self.number}'
+
+
 class Actor(models.Model):
     MALE = 'M'
     FEMALE = 'F'
@@ -22,6 +30,7 @@ class Actor(models.Model):
     ]
     first_name = models.CharField(max_length=10, default='')
     last_name = models.CharField(max_length=10, default='')
+    dressing = models.OneToOneField(DressingRoom, on_delete=models.SET_NULL, null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
 
     def __str__(self):
@@ -47,8 +56,8 @@ class Movie(models.Model):
     budget = models.IntegerField(default=10000000, blank=True, validators=[MinValueValidator(1)])
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default=RUB)
     slug = models.SlugField(default='', null=False, db_index=True)
-    director = models.ForeignKey(Director, on_delete=models.PROTECT, null=True)
-    actors = models.ManyToManyField(Actor)
+    director = models.ForeignKey(Director, on_delete=models.PROTECT, null=True)  # связь один ко многим
+    actors = models.ManyToManyField(Actor)  # связь многие ко многим
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

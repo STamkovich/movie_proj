@@ -1,9 +1,16 @@
 from django.contrib import admin
-from .models import Movie, Director, Actor
+from .models import Movie, Director, Actor, DressingRoom
 from django.db.models import QuerySet
 
 admin.site.register(Director)
 admin.site.register(Actor)
+
+
+# admin.site.register(DressingRoom)
+
+@admin.register(DressingRoom)
+class DressingRoomAdmin(admin.ModelAdmin):
+    list_display = ['actor', 'floor', 'number']
 
 
 class RatingFilter(admin.SimpleListFilter):
@@ -34,7 +41,7 @@ class MovieAdmin(admin.ModelAdmin):
     # readonly_fields = ['year'] - запрещать изменять поля при добавлении записей в бд
     prepopulated_fields = {'slug': ('name',)}
     list_display = ['name', 'rating', 'year', 'director', 'budget', 'currency', 'slug', 'rating_status']
-    list_editable = ['rating', 'year', 'budget', 'slug', 'currency','director',]
+    list_editable = ['rating', 'year', 'budget', 'slug', 'currency', 'director', ]
     filter_horizontal = ['actors']
     ordering = ['-rating', 'name']
     actions = ['set_dollars', 'set_rubles', 'set_euro']
