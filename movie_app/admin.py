@@ -84,3 +84,5 @@ class MovieAdmin(admin.ModelAdmin):
             request,
             f'Было обновлено {count_update} записей'
         )
+
+

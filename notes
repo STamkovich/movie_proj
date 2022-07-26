@@ -15,3 +15,5 @@ python manage.py shell_plus --print-sql
 
 Документация по работе с QuerySet - https://docs.djangoproject.com/en/3.2/ref/models/querysets/
 Панель инструментов отладки -https://django-debug-toolbar.readthedocs.io/en/latest/index.html
+
+HTML Forms - https://www.w3schools.com/html/html_forms.asp
